@@ -1,7 +1,8 @@
 import PostForm from '@/components/application/PostForm';
+import { Post } from '@/components/application/User';
 import { MOCK_POSTS, MOCK_USER } from '@/lib/mockData';
 import { notFound } from 'next/navigation';
-
+type Params = Promise<{ id: string }>;
 async function getPost(id: string) {
 	const post = await fetch(
 		'https://challenge-phi-ten.vercel.app/api/posts/' + id,
@@ -15,11 +16,12 @@ async function getPost(id: string) {
 	if (!post) {
 		notFound();
 	}
-	return post.json();
+	return await post.json();
 }
 
-export default async function EditPost({ params }: { params: { id: string } }) {
-	const post = await getPost(params.id);
+export default async function EditPost(props: { params: Params }) {
+	const { id } = await props.params;
+	const post = await getPost(id);
 
 	return (
 		<div className="max-w-7xl itenms-center mx-auto">
