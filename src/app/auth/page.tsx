@@ -30,28 +30,34 @@ export default function AuthPage() {
 		console.log('Form submitted with:', { username, password });
 
 		const response = isLogin
-			? await fetch('http://localhost:3030/api/login', {
-					method: 'POST',
-					headers: {
-						'Content-Type':
-							'application/json',
+			? await fetch(
+					'https://challenge-phi-ten.vercel.app/api/login',
+					{
+						method: 'POST',
+						headers: {
+							'Content-Type':
+								'application/json',
+						},
+						body: JSON.stringify({
+							username,
+							password,
+						}),
 					},
-					body: JSON.stringify({
-						username,
-						password,
-					}),
-			  }).then((data) => data.json())
-			: await fetch('http://localhost:3030/api/register', {
-					method: 'POST',
-					headers: {
-						'Content-Type':
-							'application/json',
+			  ).then((data) => data.json())
+			: await fetch(
+					'https://challenge-phi-ten.vercel.app/api/register',
+					{
+						method: 'POST',
+						headers: {
+							'Content-Type':
+								'application/json',
+						},
+						body: JSON.stringify({
+							username,
+							password,
+						}),
 					},
-					body: JSON.stringify({
-						username,
-						password,
-					}),
-			  }).then((data) => data.json());
+			  ).then((data) => data.json());
 
 		if (response) {
 			router.push('/my-posts');

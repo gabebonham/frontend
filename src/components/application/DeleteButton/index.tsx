@@ -12,7 +12,8 @@ export default function DeleteButton({ postId }: { postId: string }) {
 	const handleDelete = async () => {
 		if (confirm('Are you sure you want to delete this post?')) {
 			const response = await fetch(
-				'http://localhost:3030/api/posts/' + postId,
+				'https://challenge-phi-ten.vercel.app/api/posts/' +
+					postId,
 				{
 					method: 'DELETE',
 					headers: {

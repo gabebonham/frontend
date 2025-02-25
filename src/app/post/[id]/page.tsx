@@ -126,7 +126,7 @@ export default function PostPage({
 		const handlee = async () => {
 			setPost(
 				await fetch(
-					'http://localhost:3030/api/posts/' +
+					'https://challenge-phi-ten.vercel.app/api/posts/' +
 						resolvedParams.id,
 					{
 						headers: {

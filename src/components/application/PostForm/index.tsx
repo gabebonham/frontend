@@ -39,7 +39,8 @@ export default function PostForm({ post = null }: PostFormProps) {
 		if (post) {
 			// Update existing post in mock data
 			await fetch(
-				'http://localhost:3030/api/posts/' + post.id,
+				'https://challenge-phi-ten.vercel.app/api/posts/' +
+					post.id,
 				{
 					method: 'PUT',
 					headers: {
@@ -56,17 +57,21 @@ export default function PostForm({ post = null }: PostFormProps) {
 			).then((data) => console.log(data.json()));
 		} else {
 			// Create new post in mock data
-			await fetch('http://localhost:3030/api/posts', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					authorization: `${user.id}`,
+			await fetch(
+				'https://challenge-phi-ten.vercel.app/api/posts',
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type':
+							'application/json',
+						authorization: `${user.id}`,
+					},
+					body: JSON.stringify({
+						title,
+						content,
+					}),
 				},
-				body: JSON.stringify({
-					title,
-					content,
-				}),
-			}).then((data) => console.log(data.json()));
+			).then((data) => console.log(data.json()));
 		}
 
 		router.push('/my-posts');

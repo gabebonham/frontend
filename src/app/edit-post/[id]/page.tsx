@@ -3,12 +3,15 @@ import { MOCK_POSTS, MOCK_USER } from '@/lib/mockData';
 import { notFound } from 'next/navigation';
 
 async function getPost(id: string) {
-	const post = await fetch('http://localhost:3030/api/posts/' + id, {
-		headers: {
-			'Content-Type': 'application/json',
-			Authorization: `${MOCK_USER.id}`,
+	const post = await fetch(
+		'https://challenge-phi-ten.vercel.app/api/posts/' + id,
+		{
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `${MOCK_USER.id}`,
+			},
 		},
-	});
+	);
 	if (!post) {
 		notFound();
 	}

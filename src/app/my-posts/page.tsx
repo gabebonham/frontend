@@ -12,7 +12,7 @@ export default function MyPosts() {
 	useEffect(() => {
 		const handlee = async () => {
 			const response = await fetch(
-				'http://localhost:3030/api/posts',
+				'https://challenge-phi-ten.vercel.app/api/posts',
 				{
 					headers: {
 						'Content-Type':
